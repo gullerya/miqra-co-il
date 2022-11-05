@@ -1,0 +1,13 @@
+{
+	"name": "miqra-co-il",
+	"version": "1.0.0",
+	"description": "Miqra - Hebrew Scriptures",
+	"type": "module",
+	"scripts": {
+		"test": ""
+	},
+	"author": "gullerya@gmail.com",
+	"license": "ISC",
+	"dependencies": {},
+	"devDependencies": {}
+}
