@@ -1,0 +1,709 @@
+[
+    {
+        "id": 5,
+        "word": "בְּ",
+        "lex": "בְּ",
+        "distParent": 6,
+        "funcParent": 7
+    },
+    {
+        "id": 12,
+        "word": "רֵאשִׁ֖ית",
+        "lex": "רֵאשִׁית",
+        "distParent": 6,
+        "funcParent": 7
+    },
+    {
+        "id": 13,
+        "word": "בָּרָ֣א",
+        "lex": "ברא",
+        "distParent": 14,
+        "funcParent": 15
+    },
+    {
+        "id": 16,
+        "word": "אֱלֹהִ֑ים",
+        "lex": "אֱלֹהִים",
+        "distParent": 17,
+        "funcParent": 18
+    },
+    {
+        "id": 20,
+        "word": "אֵ֥ת",
+        "lex": "אֵת",
+        "distParent": 21,
+        "funcParent": 22
+    },
+    {
+        "id": 23,
+        "word": "הַ",
+        "lex": "הַ",
+        "distParent": 21,
+        "funcParent": 22
+    },
+    {
+        "id": 24,
+        "word": "שָּׁמַ֖יִם",
+        "lex": "שָׁמַיִם",
+        "distParent": 21,
+        "funcParent": 22
+    },
+    {
+        "id": 26,
+        "word": "וְ",
+        "lex": "וְ",
+        "distParent": 21,
+        "funcParent": 22
+    },
+    {
+        "id": 27,
+        "word": "אֵ֥ת",
+        "lex": "אֵת",
+        "distParent": 21,
+        "funcParent": 22
+    },
+    {
+        "id": 28,
+        "word": "הָ",
+        "lex": "הַ",
+        "distParent": 21,
+        "funcParent": 22
+    },
+    {
+        "id": 29,
+        "word": "אָֽרֶץ",
+        "lex": "אֶרֶץ",
+        "distParent": 21,
+        "funcParent": 22
+    },
+    {
+        "id": 33,
+        "word": "וְ",
+        "lex": "וְ",
+        "distParent": 34,
+        "funcParent": 35
+    },
+    {
+        "id": 40,
+        "word": "הָ",
+        "lex": "הַ",
+        "distParent": 41,
+        "funcParent": 42
+    },
+    {
+        "id": 43,
+        "word": "אָ֗רֶץ",
+        "lex": "אֶרֶץ",
+        "distParent": 41,
+        "funcParent": 42
+    },
+    {
+        "id": 44,
+        "word": "הָיְתָ֥ה",
+        "lex": "היה",
+        "distParent": 45,
+        "funcParent": 46
+    },
+    {
+        "id": 47,
+        "word": "תֹ֨הוּ֙",
+        "lex": "תֹּהוּ",
+        "distParent": 48,
+        "funcParent": 50
+    },
+    {
+        "id": 51,
+        "word": "וָ",
+        "lex": "וְ",
+        "distParent": 48,
+        "funcParent": 50
+    },
+    {
+        "id": 52,
+        "word": "בֹ֔הוּ",
+        "lex": "בֹּהוּ",
+        "distParent": 48,
+        "funcParent": 50
+    },
+    {
+        "id": 54,
+        "word": "וְ",
+        "lex": "וְ",
+        "distParent": 55,
+        "funcParent": 56
+    },
+    {
+        "id": 61,
+        "word": "חֹ֖שֶׁךְ",
+        "lex": "חֹשֶׁךְ",
+        "distParent": 62,
+        "funcParent": 63
+    },
+    {
+        "id": 64,
+        "word": "עַל",
+        "lex": "עַל",
+        "distParent": 65,
+        "funcParent": 66
+    },
+    {
+        "id": 67,
+        "word": "פְּנֵ֣י",
+        "lex": "פָּנֶה",
+        "distParent": 65,
+        "funcParent": 66
+    },
+    {
+        "id": 69,
+        "word": "תְהֹ֑ום",
+        "lex": "תְּהֹום",
+        "distParent": 65,
+        "funcParent": 66
+    },
+    {
+        "id": 72,
+        "word": "וְ",
+        "lex": "וְ",
+        "distParent": 73,
+        "funcParent": 74
+    },
+    {
+        "id": 79,
+        "word": "ר֣וּחַ",
+        "lex": "רוּחַ",
+        "distParent": 80,
+        "funcParent": 82
+    },
+    {
+        "id": 83,
+        "word": "אֱלֹהִ֔ים",
+        "lex": "אֱלֹהִים",
+        "distParent": 80,
+        "funcParent": 82
+    },
+    {
+        "id": 85,
+        "word": "מְרַחֶ֖פֶת",
+        "lex": "רחף",
+        "distParent": 86,
+        "funcParent": 87
+    },
+    {
+        "id": 88,
+        "word": "עַל",
+        "lex": "עַל",
+        "distParent": 89,
+        "funcParent": 90
+    },
+    {
+        "id": 91,
+        "word": "פְּנֵ֥י",
+        "lex": "פָּנֶה",
+        "distParent": 89,
+        "funcParent": 90
+    },
+    {
+        "id": 93,
+        "word": "הַ",
+        "lex": "הַ",
+        "distParent": 89,
+        "funcParent": 90
+    },
+    {
+        "id": 94,
+        "word": "מָּֽיִם",
+        "lex": "מַיִם",
+        "distParent": 89,
+        "funcParent": 90
+    },
+    {
+        "id": 98,
+        "word": "וַ",
+        "lex": "וְ",
+        "distParent": 99,
+        "funcParent": 100
+    },
+    {
+        "id": 105,
+        "word": "יֹּ֥אמֶר",
+        "lex": "אמר",
+        "distParent": 106,
+        "funcParent": 107
+    },
+    {
+        "id": 108,
+        "word": "אֱלֹהִ֖ים",
+        "lex": "אֱלֹהִים",
+        "distParent": 109,
+        "funcParent": 110
+    },
+    {
+        "id": 111,
+        "word": "יְהִ֣י",
+        "lex": "היה",
+        "distParent": 112,
+        "funcParent": 113
+    },
+    {
+        "id": 118,
+        "word": "אֹ֑ור",
+        "lex": "אֹור",
+        "distParent": 119,
+        "funcParent": 120
+    },
+    {
+        "id": 122,
+        "word": "וַֽ",
+        "lex": "וְ",
+        "distParent": 123,
+        "funcParent": 124
+    },
+    {
+        "id": 129,
+        "word": "יְהִי",
+        "lex": "היה",
+        "distParent": 130,
+        "funcParent": 131
+    },
+    {
+        "id": 132,
+        "word": "אֹֽור",
+        "lex": "אֹור",
+        "distParent": 133,
+        "funcParent": 134
+    },
+    {
+        "id": 137,
+        "word": "וַ",
+        "lex": "וְ",
+        "distParent": 138,
+        "funcParent": 139
+    },
+    {
+        "id": 144,
+        "word": "יַּ֧רְא",
+        "lex": "ראה",
+        "distParent": 145,
+        "funcParent": 146
+    },
+    {
+        "id": 147,
+        "word": "אֱלֹהִ֛ים",
+        "lex": "אֱלֹהִים",
+        "distParent": 148,
+        "funcParent": 149
+    },
+    {
+        "id": 150,
+        "word": "אֶת",
+        "lex": "אֵת",
+        "distParent": 151,
+        "funcParent": 152
+    },
+    {
+        "id": 153,
+        "word": "הָ",
+        "lex": "הַ",
+        "distParent": 151,
+        "funcParent": 152
+    },
+    {
+        "id": 154,
+        "word": "אֹ֖ור",
+        "lex": "אֹור",
+        "distParent": 151,
+        "funcParent": 152
+    },
+    {
+        "id": 155,
+        "word": "כִּי",
+        "lex": "כִּי",
+        "distParent": 156,
+        "funcParent": 157
+    },
+    {
+        "id": 160,
+        "word": "טֹ֑וב",
+        "lex": "טוב",
+        "distParent": 161,
+        "funcParent": 162
+    },
+    {
+        "id": 164,
+        "word": "וַ",
+        "lex": "וְ",
+        "distParent": 165,
+        "funcParent": 166
+    },
+    {
+        "id": 171,
+        "word": "יַּבְדֵּ֣ל",
+        "lex": "בדל",
+        "distParent": 172,
+        "funcParent": 173
+    },
+    {
+        "id": 174,
+        "word": "אֱלֹהִ֔ים",
+        "lex": "אֱלֹהִים",
+        "distParent": 175,
+        "funcParent": 176
+    },
+    {
+        "id": 177,
+        "word": "בֵּ֥ין",
+        "lex": "בַּיִן",
+        "distParent": 178,
+        "funcParent": 179
+    },
+    {
+        "id": 180,
+        "word": "הָ",
+        "lex": "הַ",
+        "distParent": 178,
+        "funcParent": 179
+    },
+    {
+        "id": 181,
+        "word": "אֹ֖ור",
+        "lex": "אֹור",
+        "distParent": 178,
+        "funcParent": 179
+    },
+    {
+        "id": 183,
+        "word": "וּ",
+        "lex": "וְ",
+        "distParent": 178,
+        "funcParent": 179
+    },
+    {
+        "id": 184,
+        "word": "בֵ֥ין",
+        "lex": "בַּיִן",
+        "distParent": 178,
+        "funcParent": 179
+    },
+    {
+        "id": 185,
+        "word": "הַ",
+        "lex": "הַ",
+        "distParent": 178,
+        "funcParent": 179
+    },
+    {
+        "id": 186,
+        "word": "חֹֽשֶׁךְ",
+        "lex": "חֹשֶׁךְ",
+        "distParent": 178,
+        "funcParent": 179
+    },
+    {
+        "id": 190,
+        "word": "וַ",
+        "lex": "וְ",
+        "distParent": 191,
+        "funcParent": 192
+    },
+    {
+        "id": 197,
+        "word": "יִּקְרָ֨א",
+        "lex": "קרא",
+        "distParent": 198,
+        "funcParent": 199
+    },
+    {
+        "id": 200,
+        "word": "אֱלֹהִ֤ים",
+        "lex": "אֱלֹהִים",
+        "distParent": 201,
+        "funcParent": 202
+    },
+    {
+        "id": 203,
+        "word": "לָ",
+        "lex": "לְ",
+        "distParent": 204,
+        "funcParent": 205
+    },
+    {
+        "id": 206,
+        "word": "",
+        "lex": "הַ",
+        "distParent": 204,
+        "funcParent": 205
+    },
+    {
+        "id": 207,
+        "word": "אֹור֙",
+        "lex": "אֹור",
+        "distParent": 204,
+        "funcParent": 205
+    },
+    {
+        "id": 208,
+        "word": "יֹ֔ום",
+        "lex": "יֹום",
+        "distParent": 209,
+        "funcParent": 210
+    },
+    {
+        "id": 211,
+        "word": "וְ",
+        "lex": "וְ",
+        "distParent": 212,
+        "funcParent": 213
+    },
+    {
+        "id": 218,
+        "word": "לַ",
+        "lex": "לְ",
+        "distParent": 219,
+        "funcParent": 220
+    },
+    {
+        "id": 221,
+        "word": "",
+        "lex": "הַ",
+        "distParent": 219,
+        "funcParent": 220
+    },
+    {
+        "id": 222,
+        "word": "חֹ֖שֶׁךְ",
+        "lex": "חֹשֶׁךְ",
+        "distParent": 219,
+        "funcParent": 220
+    },
+    {
+        "id": 223,
+        "word": "קָ֣רָא",
+        "lex": "קרא",
+        "distParent": 224,
+        "funcParent": 225
+    },
+    {
+        "id": 226,
+        "word": "לָ֑יְלָה",
+        "lex": "לַיְלָה",
+        "distParent": 227,
+        "funcParent": 228
+    },
+    {
+        "id": 230,
+        "word": "וַֽ",
+        "lex": "וְ",
+        "distParent": 231,
+        "funcParent": 232
+    },
+    {
+        "id": 237,
+        "word": "יְהִי",
+        "lex": "היה",
+        "distParent": 238,
+        "funcParent": 239
+    },
+    {
+        "id": 240,
+        "word": "עֶ֥רֶב",
+        "lex": "עֶרֶב",
+        "distParent": 241,
+        "funcParent": 242
+    },
+    {
+        "id": 243,
+        "word": "וַֽ",
+        "lex": "וְ",
+        "distParent": 244,
+        "funcParent": 245
+    },
+    {
+        "id": 250,
+        "word": "יְהִי",
+        "lex": "היה",
+        "distParent": 251,
+        "funcParent": 252
+    },
+    {
+        "id": 253,
+        "word": "בֹ֖קֶר",
+        "lex": "בֹּקֶר",
+        "distParent": 254,
+        "funcParent": 255
+    },
+    {
+        "id": 256,
+        "word": "יֹ֥ום",
+        "lex": "יֹום",
+        "distParent": 257,
+        "funcParent": 259
+    },
+    {
+        "id": 264,
+        "word": "אֶחָֽד",
+        "lex": "אֶחָד",
+        "distParent": 257,
+        "funcParent": 259
+    },
+    {
+        "id": 268,
+        "word": "וַ",
+        "lex": "וְ",
+        "distParent": 269,
+        "funcParent": 270
+    },
+    {
+        "id": 275,
+        "word": "יֹּ֣אמֶר",
+        "lex": "אמר",
+        "distParent": 276,
+        "funcParent": 277
+    },
+    {
+        "id": 278,
+        "word": "אֱלֹהִ֔ים",
+        "lex": "אֱלֹהִים",
+        "distParent": 279,
+        "funcParent": 280
+    },
+    {
+        "id": 281,
+        "word": "יְהִ֥י",
+        "lex": "היה",
+        "distParent": 282,
+        "funcParent": 283
+    },
+    {
+        "id": 288,
+        "word": "רָקִ֖יעַ",
+        "lex": "רָקִיעַ",
+        "distParent": 289,
+        "funcParent": 290
+    },
+    {
+        "id": 291,
+        "word": "בְּ",
+        "lex": "בְּ",
+        "distParent": 292,
+        "funcParent": 293
+    },
+    {
+        "id": 294,
+        "word": "תֹ֣וךְ",
+        "lex": "תָּוֶךְ",
+        "distParent": 292,
+        "funcParent": 293
+    },
+    {
+        "id": 296,
+        "word": "הַ",
+        "lex": "הַ",
+        "distParent": 292,
+        "funcParent": 293
+    },
+    {
+        "id": 297,
+        "word": "מָּ֑יִם",
+        "lex": "מַיִם",
+        "distParent": 292,
+        "funcParent": 293
+    },
+    {
+        "id": 300,
+        "word": "וִ",
+        "lex": "וְ",
+        "distParent": 301,
+        "funcParent": 302
+    },
+    {
+        "id": 307,
+        "word": "יהִ֣י",
+        "lex": "היה",
+        "distParent": 308,
+        "funcParent": 309
+    },
+    {
+        "id": 310,
+        "word": "מַבְדִּ֔יל",
+        "lex": "בדל",
+        "distParent": 311,
+        "funcParent": 312
+    },
+    {
+        "id": 313,
+        "word": "בֵּ֥ין",
+        "lex": "בַּיִן",
+        "distParent": 314,
+        "funcParent": 315
+    },
+    {
+        "id": 316,
+        "word": "מַ֖יִם",
+        "lex": "מַיִם",
+        "distParent": 314,
+        "funcParent": 315
+    },
+    {
+        "id": 317,
+        "word": "לָ",
+        "lex": "לְ",
+        "distParent": 318,
+        "funcParent": 315
+    },
+    {
+        "id": 319,
+        "word": "מָֽיִם",
+        "lex": "מַיִם",
+        "distParent": 318,
+        "funcParent": 315
+    },
+    {
+        "id": 322,
+        "word": "וַ",
+        "lex": "וְ",
+        "distParent": 323,
+        "funcParent": 324
+    },
+    {
+        "id": 329,
+        "word": "יַּ֣עַשׂ",
+        "lex": "עשׂה",
+        "distParent": 330,
+        "funcParent": 331
+    },
+    {
+        "id": 332,
+        "word": "אֱלֹהִים֮",
+        "lex": "אֱלֹהִים",
+        "distParent": 333,
+        "funcParent": 334
+    },
+    {
+        "id": 335,
+        "word": "אֶת",
+        "lex": "אֵת",
+        "distParent": 336,
+        "funcParent": 337
+    },
+    {
+        "id": 338,
+        "word": "הָ",
+        "lex": "הַ",
+        "distParent": 336,
+        "funcParent": 337
+    },
+    {
+        "id": 339,
+        "word": "רָקִיעַ֒",
+        "lex": "רָקִיעַ",
+        "distParent": 336,
+        "funcParent": 337
+    },
+    {
+        "id": 340,
+        "word": "וַ",
+        "lex": "וְ",
+        "distParent": 341,
+        "funcParent": 342
+    }
+]
