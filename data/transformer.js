@@ -9,8 +9,10 @@ const rl = readline.createInterface({
 });
 
 let words = [];
-let lexemeCounts = {};
 let currentObjectLines = null;
+const lexes = {};
+const suffixes = {};
+
 for await (const line of rl) {
 	if (line === 'CREATE OBJECT') {
 		currentObjectLines = [];
@@ -28,7 +30,8 @@ for await (const line of rl) {
 }
 
 fs.writeFileSync('data/words.json', JSON.stringify(words, null, 4), { encoding: 'utf-8' });
-fs.writeFileSync('data/lexes.json', JSON.stringify(lexemeCounts, null, 4), { encoding: 'utf-8' });
+fs.writeFileSync('data/lexes.json', JSON.stringify(lexes, null, 4), { encoding: 'utf-8' });
+fs.writeFileSync('data/suffixes.json', JSON.stringify(suffixes, null, 4), { encoding: 'utf-8' });
 
 //	PROCESSORS
 
@@ -36,6 +39,7 @@ function processObject(inputLines) {
 	const result = {};
 
 	let lexemeCount;
+	let suffixPlain;
 	for (const line of inputLines) {
 		if (line.includes('ID_D')) {
 			result.id = parseInt(line.split('=').pop());
@@ -52,6 +56,13 @@ function processObject(inputLines) {
 		} else if (line.startsWith('functional_parent')) {
 			result.funcParent = parseInt(line.split(':=').pop());
 		}
+
+		if (line.startsWith('g_suffix')) {
+			suffixPlain = line.split(':=').pop().replace(/[\";]/g, '');
+		} else if (line.startsWith('g_suffix_utf8')) {
+			if (!suffixPlain) throw new Error('suffixes are mixed up');
+			suffixes[suffixPlain] = asciiToUtf(line.split(':=').pop());
+		}
 	}
 
 	//	validations
@@ -64,12 +75,12 @@ function collectLexemeCount(lexeme, count) {
 	if (!lexeme || !count) {
 		return;
 	}
-	if (lexeme in lexemeCounts) {
-		if (lexemeCounts[lexeme] !== count) {
-			throw new Error(`for lexeme ${lexeme} found counts contradiction: ${lexemeCounts[lexeme]} vs ${count}`);
+	if (lexeme in lexes) {
+		if (lexes[lexeme] !== count) {
+			throw new Error(`for lexeme ${lexeme} found counts contradiction: ${lexes[lexeme]} vs ${count}`);
 		}
 	} else {
-		lexemeCounts[lexeme] = count;
+		lexes[lexeme] = count;
 	}
 }
 
@@ -81,20 +92,6 @@ function asciiToUtf(asciiInput) {
 	const ab = new Uint8Array(chars);
 	return new TextDecoder().decode(ab);
 }
-
-function extractMonad(rawLines) {
-	//lex_utf8:="\xd7\x91\xd7\xa8\xd7\x90";
-	for (const rawLine of rawLines) {
-		const parts = rawLine.split(':=');
-		if (parts[0].endsWith('utf8') && parts[1] && parts[1] !== '"";') {
-			let chars = parts[1].split('\\x');
-			chars = chars.map(char => parseInt(char, 16));
-			console.log(`${parts[0]}: ${new TextDecoder().decode(new Uint8Array(chars))}`);
-		}
-	}
-	return {};
-}
-
 
 // CREATE OBJECT
 // FROM MONADS= { 672 } 
