@@ -29,9 +29,11 @@ for await (const line of rl) {
 	}
 }
 
-fs.writeFileSync('data/words.json', JSON.stringify(words, null, 4), { encoding: 'utf-8' });
-fs.writeFileSync('data/lexes.json', JSON.stringify(lexes, null, 4), { encoding: 'utf-8' });
-fs.writeFileSync('data/suffixes.json', JSON.stringify(suffixes, null, 4), { encoding: 'utf-8' });
+fs.rmSync('data/output', { recursive: true });
+fs.mkdirSync('data/output', { recursive: true });
+fs.writeFileSync('data/output/words.json', JSON.stringify(words, null, 4), { encoding: 'utf-8' });
+fs.writeFileSync('data/output/lexes.json', JSON.stringify(lexes, null, 4), { encoding: 'utf-8' });
+fs.writeFileSync('data/output/suffixes.json', JSON.stringify(suffixes, null, 4), { encoding: 'utf-8' });
 
 //	PROCESSORS
 
