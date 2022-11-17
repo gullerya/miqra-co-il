@@ -1,7 +1,7 @@
 {
 	"name": "miqra-co-il",
 	"version": "1.0.0",
-	"description": "Miqra - Hebrew Scriptures",
+	"description": "Miqra Scroll",
 	"type": "module",
 	"scripts": {
 		"test": ""
