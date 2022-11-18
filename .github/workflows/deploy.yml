@@ -17,7 +17,9 @@ jobs:
           node-version-file: '.nvmrc'
 
       - name: Build
-        run: node ci/build.js
+        run: |
+          node data/migrate.js
+          node ci/build.js
 
       - name: Upload to S3
         env:
