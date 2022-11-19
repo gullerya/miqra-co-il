@@ -14,7 +14,7 @@ async function writeParagraphs(paragraphs) {
 	await fs.mkdir('src/data/paragraphs', { recursive: true });
 
 	const writePromises = paragraphs.map((p, i) => {
-		return fs.writeFile(`src/data/paragraphs/${i}`, JSON.stringify(p), { encoding: 'utf-8' });
+		return fs.writeFile(`src/data/paragraphs/${i}.json`, JSON.stringify(p), { encoding: 'utf-8' });
 	});
 	await Promise.all(writePromises);
 
