@@ -1,16 +1,13 @@
-import fs from 'node:fs';
-import * as readline from 'node:readline';
-
-const fileStream = fs.createReadStream('data/source/etcbc-2021/bhsa.mql');
-
-const rl = readline.createInterface({
-	input: fileStream,
-	crlfDelay: Infinity
-});
+import os from 'node:os';
+import { Word, Verse, Paragraph, Monad } from './impl/model.js';
+import { readNextMonadBHS } from './impl/reader.js';
+import { writeParagraphs } from './impl/writer.js';
 
 let paragraphs = [];
+let currentParagraph;
+let currentVerse;
+let currentWord;
 
-let currentObjectLines = null;
 const suffixes = {
 	'&': asciiToUtf('\\xd6\\xbe'),				//	joining maqaf
 	'05 ': asciiToUtf('\\xd7\\x80'),				//	joining pipe
@@ -29,72 +26,68 @@ const END_OF_VERSE = asciiToUtf('\\xd7\\x83');
 const NUN_RAGILA = asciiToUtf('\\xd7\\xa0');
 const NUN_HAPHUKHA = asciiToUtf('\\xd7\\x86');
 
+console.log(`Starting BHS data migration...${os.EOL}`);
 const startTime = performance.now();
 
-let lineNumber = 0;
-for await (const line of rl) {
-	if (line === 'CREATE OBJECT') {
-		currentObjectLines = [];
-	} else if (line === ']' && Array.isArray(currentObjectLines)) {
-		const currentWord = processObject(currentObjectLines, lineNumber);
-		if (currentWord.word) {
-			words.push(currentWord);
-		} else if (currentWord.lex) {
-			words[words.length - 1].lexE = currentWord.lex;
-		}
-		currentObjectLines = null;
-	} else if (currentObjectLines) {
-		currentObjectLines.push(line);
+const bhsMonadsIterator = readNextMonadBHS();
+
+for await (const rawMonad of bhsMonadsIterator) {
+	const proceed = processRawMonad(rawMonad.lines, rawMonad.startLine - 56);
+	if (!proceed) {
+		break;
 	}
-
-	lineNumber++;
-
-	if (lineNumber % 1000000 === 0) {
-		console.log(`${lineNumber} processed...`);
-	}
-
-	// if (words.length > 100) {
-	// 	break;
-	// }
 }
 
-fs.rmSync('data/output', { recursive: true });
-fs.mkdirSync('data/output', { recursive: true });
-fs.writeFileSync('data/output/words.json', JSON.stringify(words, null, 4), { encoding: 'utf-8' });
+await writeParagraphs(paragraphs);
 
-console.log(`done in ${Math.floor(performance.now() - startTime)}ms`);
+console.log(`${os.EOL}... migration done in ${Math.floor(performance.now() - startTime)}ms`);
 
 //	PROCESSORS
 //
-function processObject(inputLines, startingLineNumber) {
-	const result = {};
+function processRawMonad(inputLines, startingLineNumber) {
+	const monad = new Monad();
 
-	let kqHybrid = null;
-	inputLines.forEach((line, lineNumber) => {
+	let suffix;
+	let word;
+	let lex;
+	let qere;
+	let kqHybrid;
+	let qereExpected = false;
+	inputLines.forEach(line => {
 		if (line.includes('ID_D')) {
 			// result.id = parseInt(line.split('=').pop());
 		} else if (line.startsWith('g_word_utf8')) {
-			const word = asciiToUtf(line.split(':=').pop());
-			result.word = word || kqHybrid;
+			word = asciiToUtf(line.split(':=').pop());
+		} else if (line.startsWith('g_word')) {
+			if (line.includes('*')) {
+				qereExpected = true;
+			}
 		} else if (line.startsWith('g_voc_lex_utf8')) {
-			result.lex = asciiToUtf(line.split(':=').pop());
+			lex = asciiToUtf(line.split(':=').pop());
 		} else if (line.startsWith('qere_utf8') && !line.endsWith('"";')) {
-			result.qere = asciiToUtf(line.split(':=').pop());
+			qere = asciiToUtf(line.split(':=').pop());
 		} else if (line.startsWith('kq_hybrid_utf8') && !line.endsWith('"";')) {
 			kqHybrid = asciiToUtf(line.split(':=').pop());
 		} else if (line.startsWith('distributional_parent')) {
 			// result.distParent = parseInt(line.split(':=').pop());
 		} else if (line.startsWith('functional_parent')) {
 			// result.funcParent = parseInt(line.split(':=').pop());
-		}
-
-		if (line.startsWith('g_suffix')) {
-			const suffixPlain = line.split(':=').pop().replace(/[\";]/g, '');
-			processSuffix(suffixPlain, result, startingLineNumber + lineNumber);
+		} else if (line.startsWith('g_suffix') && !line.startsWith('g_suffix_utf8')) {
+			suffix = line.split(':=').pop().replace(/[\";]/g, '');
 		}
 	});
 
-	return result;
+	monad.t = word || kqHybrid;
+	monad.l = lex;
+	if (qereExpected) {
+		if (qere) {
+			monad.qere = qere;
+		} else {
+			console.warn(`QERE was expected but not found: ${JSON.stringify(monad)}, line: ${startingLineNumber} - assuming LEX only here`);
+		}
+	}
+
+	return finializeMonad(suffix, monad, startingLineNumber);
 }
 
 function asciiToUtf(asciiInput) {
@@ -106,64 +99,98 @@ function asciiToUtf(asciiInput) {
 	return new TextDecoder().decode(ab);
 }
 
-function processSuffix(suffix, monad, lineNumber) {
-	let nunHandled = false;
+function finializeMonad(suffix, monad, lineNumber) {
+	const proceed = true;
+
+	if (!currentWord) {
+		currentWord = new Word();
+	}
+
+	if (!monad.t) {
+		if (!monad.l) {
+			console.log(`monad is missing any text: ${JSON.stringify(monad)}; line: ${lineNumber} - finalizing everything`);
+			finalizeParagraph();
+			return false;
+		}
+		const prevMonad = currentWord.getLastMonad();
+		if (prevMonad) {
+			if (prevMonad.l1) {
+				throw new Error(`prevous monad's l1 already occupied: ${JSON.stringify(monad)}; line: ${lineNumber}`);
+			}
+			prevMonad.l1 = monad.l;
+			monad = prevMonad;
+		} else {
+			console.log(`QERE starting word: ${JSON.stringify(monad)}; line: ${lineNumber}`);
+		}
+	}
+
 
 	if (suffix === '&' || suffix.includes('05')) {
-		if (!monad.word) {
-			throw new Error(`can't append suffix to an empty word in ${JSON.stringify(monad)}`);
-		}
-		monad.word += suffixes[suffix];
-		return;
+		monad.t += suffixes[suffix];
+	}
+
+	//	handle end of monad
+	currentWord.addMonad(monad);
+
+	//	handle end of word
+	if (suffix.endsWith(' ')) {
+		finalizeWord(currentWord);
+		currentWord = null;
 	}
 
 	//	handle end of verse
 	if (suffix.includes('00')) {
-		if (!monad.word) {
-			throw new Error(`can't append end of verse to an empty word in ${JSON.stringify(monad)}; line: ${lineNumber}`);
-		}
-		monad.word += END_OF_VERSE;
+		monad.t += END_OF_VERSE;
+		finalizeVerse();
 	}
+
+	let nunHandled = false;
 
 	//	handle closed pragraph
 	if (suffix.includes('_S')) {
 		if (suffix.includes('_N')) {
-			if (!monad.word) {
-				throw new Error(`can't append NUN RAGILA to an empty word in ${JSON.stringify(monad)}`);
-			}
-			monad.word += NUN_RAGILA;
+			monad.t += NUN_RAGILA;
 			nunHandled = true;
 		}
-		processClosedParagraph();
+		finalizeParagraph(true);
 	}
 
 	//	handle opened pragraph
 	if (suffix.includes('_P')) {
 		if (suffix.includes('_N')) {
-			if (!monad.word) {
-				throw new Error(`can't append NUN RAGILA to an empty word in ${JSON.stringify(monad)}`);
-			}
-			monad.word += NUN_RAGILA;
+			monad.t += NUN_RAGILA;
 			nunHandled = true;
 		}
-		processOpenedParagraph();
+		finalizeParagraph(false);
 	}
 
 	//	handle NUN HAPHUKHA
 	if (suffix.includes('_N') && !nunHandled) {
-		if (!monad.word) {
-			throw new Error(`can't append NUN HAPHUKHA to an empty word in ${JSON.stringify(monad)}`);
-		}
-		monad.word += NUN_HAPHUKHA;
+		monad.t += NUN_HAPHUKHA;
 	}
+
+	return proceed;
 }
 
-function processClosedParagraph() {
-
+function finalizeWord(word) {
+	if (!currentVerse) {
+		currentVerse = new Verse();
+	}
+	currentVerse.addWord(word);
 }
 
-function processOpenedParagraph() {
+function finalizeVerse() {
+	if (!currentParagraph) {
+		currentParagraph = new Paragraph();
+	}
+	currentParagraph.addVerse(currentVerse);
+	currentVerse = new Verse();
+}
 
+function finalizeParagraph(closed) {
+	currentParagraph.closed = closed;
+	paragraphs.push(currentParagraph);
+	currentParagraph = new Paragraph();
 }
 
 // CREATE OBJECT
