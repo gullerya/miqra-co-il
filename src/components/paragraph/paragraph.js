@@ -15,7 +15,7 @@ class Paragraph extends HTMLElement {
 	}
 
 	set data(data) {
-		this.shadowRoot.querySelector('#verses').innerHTML = JSON.stringify(data);
+		this.shadowRoot.querySelector('.verses').items = data.v;
 	}
 }
 

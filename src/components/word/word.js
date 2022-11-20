@@ -15,7 +15,7 @@ class Word extends HTMLElement {
 	}
 
 	set data(data) {
-		this.shadowRoot.querySelector('#monads').innerHTML = JSON.stringify(data);
+		this.shadowRoot.querySelector('.monads').items = data.m;
 	}
 }
 

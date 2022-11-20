@@ -12,7 +12,7 @@ class Monad extends HTMLElement {
 	}
 
 	set data(data) {
-		this.shadowRoot.innerHTML = JSON.stringify(data);
+		this.shadowRoot.innerHTML = data.t;
 	}
 }
 

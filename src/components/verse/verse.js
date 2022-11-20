@@ -15,7 +15,8 @@ class Verse extends HTMLElement {
 	}
 
 	set data(data) {
-		this.shadowRoot.querySelector('#words').innerHTML = JSON.stringify(data);
+		this.shadowRoot.querySelector('.words').items = data.w;
+		//this.shadowRoot.innerHTML = JSON.stringify(data);
 	}
 }
 
