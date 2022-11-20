@@ -29,7 +29,7 @@ export class Word {
 
 	getLastMonad() { return this.#m[this.#m.length - 1]; }
 
-	addMonad(m) { this.#m.push(m); }
+	addMonad(m) { if (!this.#m.includes(m)) { this.#m.push(m); } }
 
 	toJSON() {
 		return { m: this.#m };

@@ -1,6 +1,7 @@
 @font-face {
-	font-family: MiqraFont;
 	src: url(fonts/sbl_hebrew.woff2);
+	font-family: MiqraFont;
+	font-display: block;
 }
 
 html,
