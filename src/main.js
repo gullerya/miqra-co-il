@@ -1,6 +1,6 @@
 import './components/scroll/scroll.js';
-import { loadParagraphById } from './services/data-service.js';
+import { loadParagraphs } from './services/data-service.js';
 
-const p = await loadParagraphById(0);
+const ps = await loadParagraphs(0, 5);
 
-document.querySelector('#scroll').data = [p];
+document.querySelector('#scroll').data = ps;

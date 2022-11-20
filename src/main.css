@@ -15,18 +15,23 @@ body {
 }
 
 header {
+	height: 32px;
 	display: flex;
+	align-items: center;
 }
 
 footer {
+	height: 32px;
 	display: flex;
+	align-items: center;
 }
 
 section#content {
 	height: 100%;
 	display: flex;
-}
-
-* {
-	font-family: MiqraFont;
+	justify-content: center;
+	overflow: hidden;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	box-sizing: border-box;
 }

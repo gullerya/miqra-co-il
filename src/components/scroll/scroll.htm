@@ -1,8 +1,20 @@
 <style>
+	:host {
+		text-align: center;
+	}
 
+	.scroll-text {
+		width: 320px;
+		height: 100%;
+		overflow-y: scroll;
+		font-family: MiqraFont;
+		font-size: 24px;
+		text-align: justify;
+		line-height: 200%;
+	}
 </style>
 
-<div>
+<div class="scroll-text" dir="rtl">
 	<data-tier-list class="paragraphs">
 		<miqra-paragraph data-tie="item => data"></miqra-paragraph>
 	</data-tier-list>
