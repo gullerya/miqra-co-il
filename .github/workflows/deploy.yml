@@ -18,6 +18,7 @@ jobs:
 
       - name: Build
         run: |
+          bzip2 -dk data/source/etcbc-2021/bhsa.mql.bz2 
           node data/migrate.js
           node ci/build.js
 
