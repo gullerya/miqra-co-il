@@ -4,6 +4,11 @@
 	font-display: block;
 }
 
+:root {
+	--scroll-fore: #030100;
+	--scroll-back: #f3e8d9;
+}
+
 html,
 body {
 	margin: 0;
@@ -21,18 +26,12 @@ header {
 	align-items: center;
 }
 
-footer {
-	height: 32px;
-	display: flex;
-	align-items: center;
-}
-
 section#content {
 	height: 100%;
 	display: flex;
 	justify-content: center;
 	overflow: hidden;
-	border-top: 1px solid #ddd;
-	border-bottom: 1px solid #ddd;
+	border-top: 1px solid var(--scroll-fore);
+	border-bottom: 1px solid var(--scroll-fore);
 	box-sizing: border-box;
 }

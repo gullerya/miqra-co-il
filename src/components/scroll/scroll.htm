@@ -1,21 +1,53 @@
 <style>
 	:host {
-		text-align: center;
+		width: 100vw;
+		height: 100%;
+		color: var(--scroll-fore);
+		background-color: var(--scroll-back);
+		overflow: hidden;
+	}
+
+	@media (min-width: 401px) {
+		:host {
+			width: 400px;
+		}
+	}
+
+	.scrollbarless-outer {
+		width: calc(100% + 64px);
+		height: 100%;
+		overflow-y: scroll;
+	}
+
+	.scrollbarless-inner {
+		width: calc(100% - 64px);
+		display: flex;
 	}
 
 	.scroll-text {
-		width: 320px;
+		flex: 1;
 		height: 100%;
-		overflow-y: scroll;
+		padding: 8px;
+		box-sizing: border-box;
 		font-family: MiqraFont;
 		font-size: 24px;
 		text-align: justify;
 		line-height: 200%;
 	}
+
+	.scroll-meta {
+		flex: 0 0 32px;
+	}
 </style>
 
-<div class="scroll-text" dir="rtl">
-	<data-tier-list class="paragraphs">
-		<miqra-paragraph data-tie="item => data"></miqra-paragraph>
-	</data-tier-list>
+<div class="scrollbarless-outer">
+	<div class="scrollbarless-inner">
+		<div class="scroll-text" dir="rtl">
+			<data-tier-list class="paragraphs">
+				<miqra-paragraph data-tie="item => data"></miqra-paragraph>
+			</data-tier-list>
+		</div>
+		<div class="scroll-meta">
+		</div>
+	</div>
 </div>
