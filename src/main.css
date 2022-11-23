@@ -7,6 +7,8 @@
 :root {
 	--scroll-fore: #030100;
 	--scroll-back: #f3e8d9;
+
+	--base-fore: var(--scroll-fore);
 }
 
 html,
@@ -18,12 +20,11 @@ body {
 	font-family: Tahoma, sans-serif;
 	display: flex;
 	flex-direction: column;
+	color: var(--base-fore);
 }
 
-header {
-	height: 32px;
-	display: flex;
-	align-items: center;
+#site-header {
+	flex: 0 0 40px;
 }
 
 section#content {

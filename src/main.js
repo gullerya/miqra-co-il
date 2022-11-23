@@ -1,3 +1,4 @@
+import './components/header/header.js';
 import './components/scroll/scroll.js';
 import { loadParagraphs } from './services/data-service.js';
 
