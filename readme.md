@@ -1,6 +1,6 @@
 # Miqra site
 
-This repo is a source of the Hebrew Scripture Scroll website, currently served via the `miqra.co.il` domain.
+This repo is a source of the Hebrew Scripture Scroll website, currently served via the [miqra.co.il](miqra.co.il) domain.
 
 ## Data
 
