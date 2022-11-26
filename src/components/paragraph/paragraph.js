@@ -16,6 +16,11 @@ class Paragraph extends HTMLElement {
 
 	set data(data) {
 		this.shadowRoot.querySelector('.verses').items = data.v;
+		if (data.closed) {
+			this.classList.add('closed');
+		} else {
+			this.classList.remove('closed');
+		}
 	}
 }
 

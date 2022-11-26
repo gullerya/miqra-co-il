@@ -9,7 +9,7 @@ let currentVerse;
 let currentWord;
 
 const suffixes = {
-	'&': asciiToUtf('\\xd6\\xbe'),				//	joining maqaf
+	'&': asciiToUtf('\\xd6\\xbe'),					//	joining maqaf
 	'05 ': asciiToUtf('\\xd7\\x80'),				//	joining pipe
 	' 05 ': asciiToUtf('\\xc2\\xa0\\xd7\\x80'),		//	joining pipe but with non-breaking space before it
 	'_P ': "פ",									//	opened paragraph

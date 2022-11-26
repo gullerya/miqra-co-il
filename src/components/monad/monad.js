@@ -1,5 +1,3 @@
-let htmCache;
-
 class Monad extends HTMLElement {
 
 	constructor() {
@@ -7,18 +5,14 @@ class Monad extends HTMLElement {
 	}
 
 	connectedCallback() {
-		const shadowRoot = this.attachShadow({ mode: 'open' });
-		shadowRoot.innerHTML = htmCache;
 	}
 
 	set data(data) {
-		this.shadowRoot.innerHTML = data.t;
+		this.innerHTML = data.t;
+		if (data.t.endsWith('־')) {
+			this.classList.add('maqqaf');
+		}
 	}
 }
 
-fetch(`${import.meta.url}/../monad.htm`)
-	.then(r => r.text())
-	.then(t => {
-		htmCache = t;
-		customElements.define('miqra-monad', Monad);
-	});
+customElements.define('miqra-monad', Monad);

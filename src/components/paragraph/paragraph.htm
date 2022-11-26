@@ -1,9 +1,18 @@
 <style>
+	:host(.closed) br {
+		display: none;
+	}
 
+	.paragraph-end {
+		display: inline-block;
+		width: 20%;
+	}
 </style>
 
-<div>
+<span class="paragraph">
 	<data-tier-list class="verses">
 		<miqra-verse data-tie="item => data"></miqra-verse>
 	</data-tier-list>
-</div>
+</span>
+<span class="paragraph-end"></span>
+<br>
