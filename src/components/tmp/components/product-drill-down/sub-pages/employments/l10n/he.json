@@ -1,0 +1,17 @@
+{
+  "empNotFound": "פרטי מעסיק חסרים, מוכר ביצרן תחת זיהוי",
+  "saverStatus": "מעמד החוסך",
+  "paymentType": "סוג תשלום",
+  "paymentStartDate": "מועד תחילת תשלום",
+  "salary": "שכר",
+  "salaryUpdatedTo": "שכר נכון לתאריך",
+  "linkageType": "הצמדה",
+  "unconditional": "זכאות ללא תנאי",
+  "punkt14": "סעיף 14",
+  "employerStatus": "סטאטוס מעסיק",
+  "address": "כתובת",
+  "email": "דוא\"ל",
+  "cellPhone": "טלפון נייד",
+  "landPhone": "טלפון נייח",
+  "remarks": "הערות"
+}

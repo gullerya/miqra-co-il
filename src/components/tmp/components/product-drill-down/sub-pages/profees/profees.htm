@@ -1,0 +1,155 @@
+<style>
+	@import "./commons/styles/base.css";
+
+	:host {
+		flex: 1;
+		padding: 10px 30px;
+		display: flex;
+		flex-direction: column;
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.general-title {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.general-title>.primary {
+		display: flex;
+		flex-direction: row;
+		margin-bottom: 10px;
+	}
+
+	.general-title>.primary .sign {
+		font-weight: 600;
+		margin: 0 5px;
+	}
+
+	.general-title>.primary>.total {
+		font-weight: 600;
+		margin: 0 5px;
+	}
+
+	.general-title>.primary .sign.profit {
+		color: var(--main-green);
+	}
+
+	.general-title>.primary .sign.loss {
+		color: var(--main-red);
+	}
+
+	.general-title>.primary>.neg>.profit {
+		display: none;
+	}
+
+	.general-title>.primary>.pos>.loss {
+		display: none;
+	}
+
+	.general-title>.secondary {
+		display: flex;
+		flex-direction: row;
+		margin-bottom: 15px;
+	}
+
+	.general-title>.secondary>.entry {
+		flex: 1;
+	}
+
+	.general-title .percent {
+		font-weight: 600;
+	}
+
+	.percent::after {
+		content: '%';
+	}
+
+	.ip-type {
+		font-size: 0.8em;
+		color: var(--main-gray);
+	}
+
+	.deposits {
+		flex: 1 0 100%;
+	}
+
+	.deposit {
+		display: flex;
+	}
+
+	.deposits .item {
+		flex-basis: 8em;
+	}
+</style>
+
+<div class="general-title">
+	<h4 class="primary bidi-transor">
+		<span data-tie="l10n:pddProfees.total"></span>
+		<span data-tie="profeesDetails:signType => className">
+			<span class="sign profit" data-tie="l10n:pddProfees.profit"></span>
+		</span>
+		<span data-tie="profeesDetails:signType => className">
+			<span class="sign loss" data-tie="l10n:pddProfees.loss"></span>
+		</span>
+		<span data-tie="l10n:pddProfees.woExpenses"></span>
+		<span>&nbsp;</span>
+		<span class="year" data-tie="profeesDetails:thisYear"></span>
+		<span>:</span>
+		<span-currency class="total" data-tie="profeesDetails:totalProfitLoss"></span-currency>
+	</h4>
+	<div class="secondary">
+		<text-field class="entry" data-tie="l10n:pddProfees.yieldNet => label">
+			<span class="percent" slot="value" data-tie="profeesDetails:yieldNet"></span>
+		</text-field>
+		<text-field class="entry yield-bond" data-tie="l10n:pddProfees.yieldBond => label">
+			<span class="percent" slot="value" data-tie="profeesDetails:yieldBond"></span>
+		</text-field>
+	</div>
+</div>
+<div class="investments">
+	<template is="data-tier-item-template" data-tie="profeesDetails:investments">
+		<data-section>
+			<span slot="title">
+				<span class="ip-name" data-tie="l10n:pddProfees.pathName"></span>
+				:
+				<span class="ip-name" data-tie="item:name"></span>
+				<span-l10n class="ip-type" data-tie="item:type"></span-l10n>
+			</span>
+			<text-field class="ip-total" data-tie="l10n:pddProfees.totalIP => label">
+				<span-currency slot="value" data-tie="item:total"></span-currency>
+			</text-field>
+			<text-field class="ip-return-net" data-tie="l10n:pddProfees.yieldNet => label">
+				<span class="percent" data-tie="item:yieldNet"></span>
+			</text-field>
+			<text-field class="ip-fee-dep-per" data-tie="l10n:pddProfees.feeDepositPercent => label">
+				<span class="percent" data-tie="item:feeDepositPercent"></span>
+			</text-field>
+			<text-field class="ip-fee-acc-per" data-tie="l10n:pddProfees.feeAccumulPercent => label">
+				<span class="percent" data-tie="item:feeAccumulPercent"></span>
+			</text-field>
+			<text-field class="ip-fee-dep-m-per" data-tie="l10n:pddProfees.feeDepositMivnePercent => label">
+				<span class="percent" data-tie="item:feeDepositMivnePercent"></span>
+			</text-field>
+			<text-field class="ip-fee-app-m-per" data-tie="l10n:pddProfees.feeAccumulMivnePercent => label">
+				<span class="percent" data-tie="item:feeAccumulMivnePercent"></span>
+			</text-field>
+			<text-field class="ip-fee-other" data-tie="l10n:pddProfees.feeOther => label">
+				<span class="percent" data-tie="item:feeOther"></span>
+			</text-field>
+			<div class="deposits">
+				<template is="data-tier-item-template" data-tie="item:totals => items">
+					<div class="deposit">
+						<span-l10n class="item" data-tie="item:depositType"></span-l10n>
+						<span-currency class="item" data-tie="item:depositTotal"></span-currency>
+						<span class="item percent" data-tie="item:depositPercent"></span>
+					</div>
+				</template>
+			</div>
+		</data-section>
+	</template>
+</div>

@@ -1,0 +1,107 @@
+<style class="grid-definitions">
+	:host {
+		min-width: 300px;
+		min-height: min-content;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.toolbar {
+		flex-basis: 32px;
+		padding: 0 4px;
+		display: flex;
+		align-items: center;
+	}
+
+	:host(.headless)>.toolbar {
+		display: none;
+	}
+
+	.headers {
+		flex-basis: 32px;
+		display: flex;
+		font-weight: 600;
+		color: #fff;
+		background-color: var(--main-green);
+	}
+
+	.headers>.header {
+		flex: 1;
+	}
+
+	.data {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+
+	.data>.row {
+		flex-basis: 30px;
+		display: flex;
+		align-items: stretch;
+	}
+
+	.data>.row:hover {
+		background-color: rgba(224, 224, 255, 0.3);
+	}
+
+	.data>.row:not(:last-child) {
+		border-bottom: 1px dotted #ccc;
+	}
+</style>
+
+<style class="cell-definitions">
+	data-grid-cell {
+		flex: 1;
+		padding: 4px;
+		display: flex;
+		overflow: hidden;
+		white-space: nowrap;
+		align-items: center;
+	}
+
+	data-grid-cell:hover {
+		background-color: rgba(96, 96, 164, 0.1);
+	}
+
+	data-grid-cell.hidden {
+		display: none;
+	}
+
+	data-grid-cell>* {
+		flex: auto;
+		display: flex;
+	}
+
+	data-grid-cell>.boolean {
+		flex: 0 1 auto;
+	}
+
+	data-grid-cell>.currency {
+		align-items: baseline;
+	}
+
+	data-grid-cell>.percent::after {
+		content: '%';
+	}
+</style>
+
+<div class="toolbar">
+</div>
+<div class="headers">
+	<template is="data-tier-item-template" data-tie="{tie-id}:headers">
+		<data-grid-header class="header" data-tie="item"></data-grid-header>
+	</template>
+</div>
+<div class="data">
+	<template is="data-tier-item-template" data-tie="{tie-id}:data">
+		<div class="row">
+			<template is="data-tier-item-template" data-tie="item:cells">
+				<data-grid-cell class="cell" data-tie="item"></data-grid-cell>
+			</template>
+		</div>
+	</template>
+</div>

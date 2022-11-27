@@ -1,0 +1,95 @@
+<style>
+	:host {
+		flex: 1;
+		padding: 10px 30px;
+		display: flex;
+		flex-direction: column;
+		overflow: auto;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.emp-refId {
+		font-size: 0.75em;
+		color: var(--main-gray);
+	}
+
+	.content {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.metadata {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.metadata .parts {
+		flex: 1 0 auto;
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
+	.percent::after {
+		content: '%';
+	}
+
+	.data {
+		flex: 1;
+	}
+</style>
+
+<template is="data-tier-item-template" data-tie="depositsModel:data">
+	<data-section>
+		<div slot="title">
+			<span data-tie="item:employer.empFound => className">
+				<span class="emp-name" data-tie="item:employer.name"></span>
+				&#x20;
+				<span class="emp-refId" data-tie="item:employer.refId"></span>
+			</span>
+			<span data-tie="item:employer.empNotFound => className">
+				<span data-tie="l10n:deposits.empNotFound"></span>
+				&#x20;
+				<span data-tie="item:employer.refIdInInstitution"></span>
+			</span>
+		</div>
+
+		<div class="content">
+			<div class="metadata">
+				<div class="parts">
+					<text-field data-tie="l10n:deposits.saverStatus => label">
+						<span-l10n slot="value" data-tie="item:saverStatus"></span-l10n>
+					</text-field>
+					<text-field data-tie="l10n:deposits.definitiveSalary => label">
+						<span-currency slot="value" data-tie="item:depositParts.definitiveSalary"></span-currency>
+					</text-field>
+					<text-field data-tie="l10n:deposits.totalDepositPercent => label">
+						<span slot="value" class="percent" data-tie="item:depositParts.totalDepositPercent"></span>
+					</text-field>
+				</div>
+				<div class="parts">
+					<template is="data-tier-item-template" data-tie="item:depositParts.byDepositDoer">
+						<text-field>
+							<span-l10n slot="label" data-tie="item:doerLabel"></span-l10n>
+							<span slot="value" class="percent" data-tie="item:percent"></span>
+						</text-field>
+					</template>
+				</div>
+				<div class="parts">
+					<template is="data-tier-item-template" data-tie="item:depositParts.byDepositType">
+						<text-field>
+							<span-l10n slot="label" data-tie="item:typeLabel"></span-l10n>
+							<span slot="value" class="percent" data-tie="item:percent"></span>
+						</text-field>
+					</template>
+				</div>
+			</div>
+			<data-grid class="data headless" data-tie="item:deposits"></data-grid>
+		</div>
+	</data-section>
+</template>
+<div class="no-data hidden" data-tie="l10n:deposits.noData"></div>

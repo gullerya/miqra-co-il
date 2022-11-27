@@ -1,0 +1,89 @@
+<style>
+	:host {
+		flex: 1;
+		padding: 10px 30px;
+		display: flex;
+		flex-direction: column;
+		overflow: auto;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.emp-refId {
+		font-size: 0.75em;
+		color: var(--main-gray);
+	}
+
+	.content {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.metadata {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.metadata .parts {
+		flex: 1 0 auto;
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+
+	.parts .data {
+		flex: 1;
+	}
+
+	.percent::after {
+		content: '%';
+	}
+
+	.data {
+		flex: 1;
+	}
+</style>
+
+<text-field data-tie="l10n:savingsLabels.totalForAll => label">
+	<span-currency slot="value" data-tie="savingsModel:totalForAll"></span-currency>
+</text-field>
+<template is="data-tier-item-template" data-tie="savingsModel:data">
+	<data-section>
+		<div slot="title">
+			<span data-tie="item:employer.empFound => className">
+				<span class="emp-name" data-tie="item:employer.name"></span>
+				&#x20;
+				<span class="emp-refId" data-tie="item:employer.refId"></span>
+			</span>
+			<span data-tie="item:employer.empNotFound => className">
+				<span data-tie="l10n:savingsLabels.empNotFound"></span>
+				&#x20;
+				<span data-tie="item:employer.refIdInInstitution"></span>
+			</span>
+		</div>
+
+		<div class="content">
+			<div class="metadata">
+				<div class="parts">
+					<text-field data-tie="l10n:savingsLabels.saverStatus => label">
+						<span-l10n slot="value" data-tie="item:saverStatus"></span-l10n>
+					</text-field>
+					<text-field data-tie="l10n:savingsLabels.savingsToDate => label">
+						<span-date slot="value" data-tie="item:savingsToDate"></span-date>
+					</text-field>
+				</div>
+			</div>
+			<div class="data">
+				<h4 data-tie="l10n:savingsLabels.byRedeemType"></h4>
+				<data-grid class="data headless" data-tie="item:savingsByType"></data-grid>
+			</div>
+			<div class="data">
+				<h4 data-tie="l10n:savingsLabels.byTimeType"></h4>
+				<data-grid class="data headless" data-tie="item:savingsByTime"></data-grid>
+			</div>
+		</div>
+	</data-section>
+</template>

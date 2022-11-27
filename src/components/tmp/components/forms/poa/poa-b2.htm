@@ -1,0 +1,227 @@
+<style>
+	:host {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		direction: rtl;
+		overflow: hidden;
+		padding: 24px;
+	}
+
+	.header {
+		flex: 0 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.body {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		overflow-x: hidden;
+		overflow-y: scroll;
+	}
+
+	.footer {
+		flex: 0 0 auto;
+		display: flex;
+		justify-content: center;
+	}
+
+	.main-title {
+		font-weight: 700;
+		text-align: center;
+		margin-bottom: 10px;
+	}
+
+	.sub-title {
+		font-weight: 600;
+		text-align: center;
+	}
+
+	.addressee {
+		margin-bottom: 20px;
+	}
+
+	.addressee .title {
+		font-weight: 600;
+	}
+
+	.principals {
+		display: flex;
+	}
+
+	.principals>.principal {
+		flex: 1 0 0;
+	}
+
+	.principal>.title {
+		font-weight: 600;
+	}
+
+	.indent {
+		margin: 8px 40px;
+		display: flex;
+		align-items: center;
+	}
+
+	.principal .label {
+		flex-basis: 130px;
+		color: #777;
+	}
+
+	.principal .data {
+		margin: 0;
+	}
+
+	.statement {
+		margin: 20px 0;
+	}
+
+	.products-data {
+		border: 1px solid #999;
+	}
+
+	.strategy {
+		margin: 10px 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.strategy>.title {
+		font-weight: 600;
+		margin: 5px 0;
+	}
+
+	.strategy>.option {
+		display: flex;
+	}
+
+	.signature>.title {
+		flex: 0 0 auto;
+		font-weight: 600;
+	}
+
+	.signature>.data {
+		flex: 0 0 200px;
+		height: 100%;
+		background-color: var(--default-background);
+		border-bottom: 1px solid #999;
+	}
+</style>
+
+<div class="header">
+	<div class="main-title">
+		הרשאה מתמשכת לבעל רישיון לקבלת מידע והעברת בקשות לביצוע פעולות
+		<br />
+		מינוי בעל רישיון (נספח ב' 2)
+	</div>
+	<div class="sub-title">
+		הרשאה זו מתייחסת רק למוצרים המפורטים מטה , ומבטלת ייפוי כוח של בעל רישיון אחר עבור מוצרים אלו
+	</div>
+</div>
+<h-splitter clearance="10px"></h-splitter>
+<div class="body">
+	<div class="addressee">
+		<span class="title">לכבוד:&nbsp;</span>
+		<span data-tie="powerOfAttorneyB2:to.name"></span>,
+		<span data-tie="powerOfAttorneyB2:to.refId"></span>
+	</div>
+	<div class="principals">
+		<div class="principal saver">
+			<div class="title">מייפה הכוח (הלקוח):</div>
+			<div class="indent">
+				<span class="label">שם:</span>
+				<input-text class="data" readonly data-tie="powerOfAttorneyB2:from.name"></input-text>
+			</div>
+			<div class="indent">
+				<span class="label">מספר זיהוי:</span>
+				<input-text class="data" readonly data-tie="powerOfAttorneyB2:from.legalId"></input-text>
+			</div>
+			<div class="indent">
+				<span class="label">כתובת:</span>
+				<input-text class="data" readonly data-tie="powerOfAttorneyB2:from.address"></input-text>
+			</div>
+		</div>
+		<div class="principal isure">
+			<div class="title">מיופה הכוח (סוכן ביטוח פנסיוני):</div>
+			<div class="indent">
+				<span class="label">שם תאגיד:</span>
+				<input-text class="data" readonly data-tie="powerOfAttorneyB2:for.name"></input-text>
+			</div>
+			<div class="indent">
+				<span class="label">רישיון מספר:</span>
+				<input-text class="data" readonly data-tie="powerOfAttorneyB2:for.legalId"></input-text>
+			</div>
+			<div class="indent">
+				<span class="label">טלפון:</span>
+				<input-text class="data" readonly data-tie="powerOfAttorneyB2:for.phone"></input-text>
+			</div>
+			<div class="indent">
+				<span class="label">דוא"ל:</span>
+				<input-text class="data" readonly data-tie="powerOfAttorneyB2:for.email"></input-text>
+			</div>
+		</div>
+	</div>
+	<div class="statement">
+		אני, הח"מ, מייפה את כוחו של סוכן הביטוח או היועץ הפנסיוני ומי מטעמו, לפנות בשמי לגוף המוסדי המפורט לעיל לשם קבלת
+		מידע אודות מוצרים פנסיוניים ותכנית ביטוח הנמצאות ברשותי מעת לעת במסגרת ייעוץ פנסיוני או שיווק פנסיוני מתמשך,
+		העברת
+		בקשותיי להצטרפות למוצר או העברת בקשותיי לביצוע פעולות בו, והכל בהתאם לדין. העברת מידע אודותיי, כאמור לעיל, יכול
+		שתיעשה באמצעות מערכת סליקה פנסיונית.
+		אם מנוהלת עבורי תוכנית ביטוח קבוצתית שבעל הפוליסה בה הוא מעביד או ספק שירות, יועבר אודותיה מידע בלבד ומיופה הכוח
+		לא
+		יורשה לבצע פעולות במוצר.
+	</div>
+	<div class="products-title">
+		הרשאה זו מתייחסת רק למוצרים הפנסיוניים המפורטים מטה:
+	</div>
+	<data-grid class="products-data headless" data-tie="powerOfAttorneyB2:products" headless></data-grid>
+	<div class="strategy cancellation">
+		<div class="title">
+			ביטול הרשאה קודמת (במידה וההרשאה שניתנה אינה עבור קבלת מידע בלבד לגבי מוצר מסוים)
+		</div>
+		<div class="option">
+			<input id="cancellation-strategy-option-a" type="checkbox"
+				data-tie="powerOfAttorneyB2:strategies.cancellation.a" />
+			<label for="cancellation-strategy-option-a">
+				בחתימה על הרשאה זו הריני מבטל כל הרשאה מתמשכת קודמת לסוכן ביטוח או יועץ פנסיוני אחר לגבי מוצרים הכלולים
+				בהרשאה זו, מלבד הרשאה שניתנה עבור קבלת מידע על מוצר מסוים, לא יאוחר מ-5 ימי עסקים מהמועד בו התקבלה בגוף
+				המוסדי.
+			</label>
+		</div>
+		<div class="option">
+			<input id="cancellation-strategy-option-b" type="checkbox"
+				data-tie="powerOfAttorneyB2:strategies.cancellation.b" />
+			<label for="cancellation-strategy-option-b">
+				בחתימה על הרשאה זו הריני מבטל כל הרשאה מתמשכת קודמת לסוכן ביטוח או יועץ פנסיוני אחר לגבי מוצרים הכלולים
+				בהרשאה זו, לא יאוחר מ-5 ימי עסקים מהמועד בו התקבלה בגוף המוסדי.
+			</label>
+		</div>
+	</div>
+	<div class="strategy duration">
+		<div class="title">
+			תוקפו של ייפוי כוח
+		</div>
+		<div class="option">
+			<input id="duration-strategy-option-a" type="checkbox" data-tie="powerOfAttorneyB2:strategies.duration.a" />
+			<label for="duration-strategy-option-a">
+				הרשאה זו תעמוד למשך 10 שנים או לתקופה קצרה יותר וכל עוד לא נמסרה הודעה על ביטול ההרשאה.
+			</label>
+		</div>
+		<div class="option">
+			<input id="duration-strategy-option-b" type="checkbox" data-tie="powerOfAttorneyB2:strategies.duration.b" />
+			<label for="duration-strategy-option-b">
+				הרשאה זו תעמוד למשך תקופה קצרה מ-10 שנים - עד ליום&nbsp
+				<input type="text" class="duration-till"
+					data-tie="powerOfAttorneyB2:strategies.duration.till, powerOfAttorneyB2:strategies.duration.tillDisabled => disabled" />
+			</label>
+		</div>
+	</div>
+</div>
+<h-splitter clearance="10px"></h-splitter>
+<div class="footer">
+	<button class="button agree">חתום ושלח</button>
+</div>

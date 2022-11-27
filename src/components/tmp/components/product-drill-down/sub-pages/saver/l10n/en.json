@@ -1,0 +1,17 @@
+{
+  "perDetails": "Personal Info",
+  "fullName": "Name",
+  "gender": "Gender",
+  "legalId": "Legal ID",
+  "birthday": "Birthday",
+  "marital": "Marital status",
+  "children": "Children",
+  "saverStatus": "Saver status",
+  "remarks": "Remarks",
+  "contacting": "Contact",
+  "email": "Email",
+  "cellPhone": "Cell phone",
+  "landPhone": "Land phone",
+  "address": "Address",
+  "altAddress": "Posting address"
+}

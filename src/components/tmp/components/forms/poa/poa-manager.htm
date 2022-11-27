@@ -1,0 +1,104 @@
+<style>
+	@import "./commons/styles/base.css";
+
+	:host {
+		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+	}
+
+	:host > .mode {
+		display: none;
+		flex: 1;
+		flex-direction: column;
+	}
+
+	:host(.user-data-incomplete) > .user-data-incomplete {
+		display: flex;
+	}
+
+	:host(.no-products) > .no-products {
+		display: flex;
+	}
+
+	:host(.all-isure-managed) > .all-isure-managed {
+		display: flex;
+	}
+
+	:host(.poa-forms-manager) > .poa-forms-manager {
+		display: flex;
+	}
+
+	.bold {
+		font-weight: 600;
+	}
+
+	.institution-entry {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		margin-bottom: 30px;
+	}
+
+	.institution-entry > .icon {
+		width: 60px;
+		height: 60px;
+	}
+
+	.institution-entry > .subtitle {
+		margin: 10px;
+	}
+
+	.institution-entry.isure-unlinked > .action {
+		display: none;
+	}
+
+	.institution-entry > .isure-unlinked {
+		display: none;
+	}
+
+	.institution-entry.isure-unlinked > .isure-unlinked {
+		display: flex;
+		color: red;
+	}
+</style>
+
+<div class="mode user-data-incomplete">
+	<div data-tie="l10n:poaManager.userDataIncomplete"></div>
+	<div data-tie="poaManager:userDataIncompleteError"></div>
+</div>
+<div class="mode no-products" data-tie="l10n:poaManager.noProducts"></div>
+<div class="mode all-isure-managed" data-tie="l10n:poaManager.allISure"></div>
+<div class="mode poa-forms-manager">
+	<h3 data-tie="l10n:general.overview"></h3>
+	<div>
+		<div class="overview-title">
+			<span data-tie="poaManager:totalProducts" class="bold-a"></span>
+			&nbsp;
+			<span data-tie="l10n:poaManager.overviewTitleA"></span>
+			&nbsp;
+			<span data-tie="poaManager:institutions.length" class="bold-a"></span>
+			&nbsp;
+			<span data-tie="l10n:poaManager.overviewTitleB"></span>
+		</div>
+	</div>
+	<h3 data-tie="l10n:general.details"></h3>
+	<div class="products-by-institution">
+		<template is="data-tier-item-template" data-tie="poaManager:institutions">
+			<div class="institution-entry">
+				<fund-icon data-tie="item:institution" class="icon"></fund-icon>
+				<div class="subtitle">
+					<span data-tie="l10n:poaManager.detailTitleA"></span>
+					&nbsp;
+					<span data-tie="item:products.length" class="bold-a"></span>
+					&nbsp;
+					<span data-tie="l10n:poaManager.detailTitleB"></span>
+				</div>
+				<button class="action"
+				        data-tie="l10n:general.start, poaManager:startPOAForm => onclick, item => data"></button>
+				<div class="isure-unlinked bold" data-tie="l10n:poaManager.unlinkedInstitution"></div>
+			</div>
+		</template>
+	</div>
+</div>

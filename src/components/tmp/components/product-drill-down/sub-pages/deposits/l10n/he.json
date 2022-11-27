@@ -1,0 +1,20 @@
+{
+	"noData": "לא דווחו הפקדות למוצר זה.",
+	"empNotFound": "פרטי מעסיק חסרים, מוכר ביצרן תחת זיהוי",
+	"saverStatus": "מעמד החוסך",
+	"definitiveSalary": "שכר הפוליסה",
+	"totalDepositPercent": "סך אחוז הפקדה",
+	"salaryMonth": "חודש",
+	"salary": "שכר",
+	"severance": "פיצויים",
+	"employeeReward": "עובד",
+	"employerReward": "מעסיק",
+	"reward47": "תגמולים 47",
+	"disability": "אבדן כושר עבודה",
+	"employeeOther": "אחר (עובד)",
+	"employerOther": "אחר (מעסיק)",
+	"employeeStudy": "עובד",
+	"employerStudy": "מעסיק",
+	"rewardSpecial": "תגמולים פרט",
+	"saveForChild": "חסכון לכל ילד"
+}
