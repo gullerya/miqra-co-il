@@ -5,8 +5,10 @@ import { loadParagraphs, totalParagraphs } from '../../services/data-service.js'
 let htmCache;
 
 class Scroll extends HTMLElement {
-	#firstParId = 0;
 	#slidingWindowSize = 12;
+	#incrementSize = 3;
+
+	#firstParId = 0;
 	#slidingWindowData;
 	#lastScrollTop = null;
 	#updateInProgress = false;
@@ -60,18 +62,15 @@ class Scroll extends HTMLElement {
 			}
 			if (totalScroll - nst - halfView * 2 < halfView) {
 				this.#updateInProgress = true;
-				this.#firstParId += 3;
-				const ps = await loadParagraphs(this.#firstParId + this.#slidingWindowSize - 3, 3);
-				requestAnimationFrame(() => {
-					this.#slidingWindowData.push(...ps);
-					this.#updateInProgress = false;
+				this.#firstParId += this.#incrementSize;
+				const ps = await loadParagraphs(
+					this.#firstParId + this.#slidingWindowSize - this.#incrementSize,
+					this.#incrementSize
+				);
 
-					requestAnimationFrame(() => {
-						this.#slidingWindowData.shift();
-						this.#slidingWindowData.shift();
-						this.#slidingWindowData.shift();
-					});
-				});
+				await this.#appendParagraphs(ps, false);
+				this.#updateInProgress = false;
+				this.#removeParagraphs(this.#incrementSize, true);
 			}
 		} else {
 			if (this.#firstParId === 0) {
@@ -79,20 +78,46 @@ class Scroll extends HTMLElement {
 			}
 			if (nst < halfView) {
 				this.#updateInProgress = true;
-				this.#firstParId -= 3;
-				const ps = await loadParagraphs(this.#firstParId, 3);
-				requestAnimationFrame(() => {
-					this.#slidingWindowData.unshift(...ps);
-					this.#updateInProgress = false;
+				this.#firstParId -= this.#incrementSize;
+				const ps = await loadParagraphs(this.#firstParId, this.#incrementSize);
 
-					requestAnimationFrame(() => {
-						this.#slidingWindowData.pop();
-						this.#slidingWindowData.pop();
-						this.#slidingWindowData.pop();
-					});
-				});
+				await this.#appendParagraphs(ps, true);
+				this.#updateInProgress = false;
+				this.#removeParagraphs(this.#incrementSize, false);
 			}
 		}
+	}
+
+	async #appendParagraphs(pars, fromBeg) {
+		const aop = fromBeg ? 'pop' : 'shift';
+		const dop = fromBeg ? 'unshift' : 'push';
+		return new Promise(resolve => {
+			const wf = () => {
+				const p = pars[aop]();
+				this.#slidingWindowData[dop](p);
+				if (pars.length) {
+					requestAnimationFrame(wf);
+				} else {
+					resolve();
+				}
+			};
+			requestAnimationFrame(wf);
+		});
+	}
+
+	async #removeParagraphs(count, fromBeg) {
+		const opf = fromBeg ? 'shift' : 'pop';
+		return new Promise(resolve => {
+			const wf = () => {
+				this.#slidingWindowData[opf]();
+				if (--count) {
+					requestAnimationFrame(wf);
+				} else {
+					resolve();
+				}
+			};
+			requestAnimationFrame(wf);
+		});
 	}
 }
 
