@@ -15,16 +15,20 @@ class Paragraph extends HTMLElement {
 	}
 
 	set data(data) {
-		this.shadowRoot.querySelector('.verses').items = data.v;
-		if (data.closed) {
-			this.classList.add('closed');
+		if (data) {
+			this.shadowRoot.querySelector('.verses').items = data.v;
+			if (data.closed) {
+				this.classList.add('closed');
+			} else {
+				this.classList.remove('closed');
+			}
 		} else {
-			this.classList.remove('closed');
+			this.remove();
 		}
 	}
 }
 
-fetch(`${import.meta.url}/../paragraph.htm`)
+fetch(`${import.meta.url} /../paragraph.htm`)
 	.then(r => r.text())
 	.then(t => {
 		htmCache = t;
