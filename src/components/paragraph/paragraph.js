@@ -1,4 +1,4 @@
-import 'https://libs.gullerya.com/data-tier-list/2.2.1/data-tier-list.min.js';
+import 'https://libs.gullerya.com/data-tier-list/2.2.1/data-tier-list.js';
 import '../verse/verse.js';
 
 let htmCache;

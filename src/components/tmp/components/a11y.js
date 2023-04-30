@@ -1,4 +1,4 @@
-import * as DataTier from '../libs/data-tier/data-tier.min.js';
+import * as DataTier from '../libs/data-tier/data-tier.js';
 import { ComponentBase, initComponent } from '../libs/rich-component/rich-component.min.js';
 import * as l10nService from '../services/localization.js';
 import '../elements/boolean-icon.js';

@@ -8,7 +8,7 @@ class Monad extends HTMLElement {
 	}
 
 	set data(data) {
-		this.innerHTML = data.t;
+		this.textContent = data.t;
 		if (data.t.endsWith('־')) {
 			this.classList.add('maqqaf');
 		}
