@@ -1,0 +1,24 @@
+<style>
+	:host {
+		--waiting-progress-rail-color: #dddddd;
+		--waiting-progress-dot-color: #000000;
+	}
+
+	#railPath {
+		stroke: var(--waiting-progress-rail-color);
+	}
+
+	#dot {
+		fill: var(--waiting-progress-dot-color);
+	}
+</style>
+
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+	<path id="railPath" d="M 16,16 m 12,0 a 12,12 0,0,1 -24,0 a 12,12 0,0,1 24,0" fill="none" stroke-width="2" />
+
+	<circle id="dot" cx="0" cy="0" r="3">
+		<animateMotion dur="2s" repeatCount="indefinite" rotate="0">
+			<mpath href="#railPath" />
+		</animateMotion>
+	</circle>
+</svg>

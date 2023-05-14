@@ -5,8 +5,8 @@
 }
 
 :root {
-	--scroll-fore: #030100;
-	--scroll-back: #f3e8d9;
+	--scroll-fore: #050300;
+	--scroll-back: #ffffff;
 
 	--base-fore: var(--scroll-fore);
 }
@@ -33,6 +33,5 @@ section#content {
 	justify-content: center;
 	overflow: hidden;
 	border-top: 1px solid var(--scroll-fore);
-	border-bottom: 1px solid var(--scroll-fore);
 	box-sizing: border-box;
 }
