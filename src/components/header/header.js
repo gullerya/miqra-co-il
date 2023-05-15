@@ -1,5 +1,3 @@
-import '../waiting-progress/waiting-progress.js';
-
 let htmCache;
 
 class SiteHeader extends HTMLElement {

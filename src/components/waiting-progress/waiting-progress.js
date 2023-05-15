@@ -4,11 +4,11 @@ class WaitingProgress extends HTMLElement {
 
 	constructor() {
 		super();
+		const shadowRoot = this.attachShadow({ mode: 'open' });
+		shadowRoot.innerHTML = htmCache;
 	}
 
 	connectedCallback() {
-		const shadowRoot = this.attachShadow({ mode: 'open' });
-		shadowRoot.innerHTML = htmCache;
 	}
 
 	set data(data) {

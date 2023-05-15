@@ -1,5 +1,6 @@
 import 'https://libs.gullerya.com/data-tier-list/2.2.1/data-tier-list.js';
 import '../paragraph/paragraph.js';
+import '../waiting-progress/waiting-progress.js';
 import { loadParagraphs, totalParagraphs } from '../../services/data-service.js';
 
 let htmCache;
@@ -12,6 +13,8 @@ class Scroll extends HTMLElement {
 	#slidingWindowData;
 	#lastScrollTop = null;
 	#updateInProgress = false;
+	#scrollContainer;
+	#waitingProgressElement = document.createElement('waiting-progress');
 
 	constructor() {
 		super();
@@ -20,11 +23,10 @@ class Scroll extends HTMLElement {
 	connectedCallback() {
 		const shadowRoot = this.attachShadow({ mode: 'open' });
 		shadowRoot.innerHTML = htmCache;
+		this.#scrollContainer = shadowRoot.querySelector('.scrollbarless-outer');
 
 		//	setup events
-		shadowRoot
-			.querySelector('.scrollbarless-outer')
-			.addEventListener('scroll', this.#onscroll.bind(this));
+		this.#scrollContainer.addEventListener('scroll', this.#onscroll.bind(this));
 
 		//	init initial
 		this.#initData();
@@ -62,6 +64,7 @@ class Scroll extends HTMLElement {
 			}
 			if (totalScroll - nst - halfView * 2 < halfView) {
 				this.#updateInProgress = true;
+				this.#scrollContainer.append(this.#waitingProgressElement);
 				this.#firstParId += this.#incrementSize;
 				const ps = await loadParagraphs(
 					this.#firstParId + this.#slidingWindowSize - this.#incrementSize,
@@ -70,6 +73,7 @@ class Scroll extends HTMLElement {
 
 				await this.#appendParagraphs(ps, false);
 				this.#updateInProgress = false;
+				// this.#scrollContainer.removeChild(this.#waitingProgressElement);
 				this.#removeParagraphs(this.#incrementSize, true);
 			}
 		} else {
@@ -78,11 +82,13 @@ class Scroll extends HTMLElement {
 			}
 			if (nst < halfView) {
 				this.#updateInProgress = true;
+				this.#scrollContainer.prepend(this.#waitingProgressElement);
 				this.#firstParId -= this.#incrementSize;
 				const ps = await loadParagraphs(this.#firstParId, this.#incrementSize);
 
 				await this.#appendParagraphs(ps, true);
 				this.#updateInProgress = false;
+				// this.#scrollContainer.removeChild(this.#waitingProgressElement);
 				this.#removeParagraphs(this.#incrementSize, false);
 			}
 		}

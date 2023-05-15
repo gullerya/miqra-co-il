@@ -6,22 +6,17 @@
 		color: var(--scroll-fore);
 		background-color: var(--scroll-back);
 		overflow: hidden;
+		--hidden-width: 64px;
 	}
 
 	.scrollbarless-outer {
-		width: calc(100% + 64px);
+		width: calc(100% + var(--hidden-width));
 		height: 100%;
 		overflow-y: scroll;
 	}
 
-	.scrollbarless-inner {
-		width: calc(100% - 64px);
-		display: flex;
-	}
-
 	.scroll-text {
-		flex: 1;
-		height: 100%;
+		width: calc(100% - var(--hidden-width));
 		padding: 8px;
 		box-sizing: border-box;
 		font-family: MiqraFont;
@@ -30,19 +25,15 @@
 		line-height: 200%;
 	}
 
-	.scroll-meta {
-		flex: 0 0 32px;
+	waiting-progress {
+		margin-inline-start: calc(50% - var(--hidden-width) + 16px);
 	}
 </style>
 
 <div class="scrollbarless-outer">
-	<div class="scrollbarless-inner">
-		<div class="scroll-text" dir="rtl">
-			<data-tier-list class="paragraphs">
-				<miqra-paragraph data-tie="item => data"></miqra-paragraph>
-			</data-tier-list>
-		</div>
-		<div class="scroll-meta">
-		</div>
+	<div class="scroll-text" dir="rtl">
+		<data-tier-list class="paragraphs">
+			<miqra-paragraph data-tie="item => data"></miqra-paragraph>
+		</data-tier-list>
 	</div>
 </div>
