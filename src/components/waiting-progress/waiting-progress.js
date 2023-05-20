@@ -10,13 +10,9 @@ class WaitingProgress extends HTMLElement {
 
 	connectedCallback() {
 	}
-
-	set data(data) {
-		this.shadowRoot.querySelector('.monads').items = data.m;
-	}
 }
 
-fetch(`${import.meta.url}/../waiting-progress.htm`)
+fetch(`${import.meta.url}/../waiting-progress-circle.htm`)
 	.then(r => r.text())
 	.then(t => {
 		htmCache = t;
