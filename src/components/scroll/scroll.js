@@ -73,7 +73,7 @@ class Scroll extends HTMLElement {
 
 				await this.#appendParagraphs(ps, false);
 				this.#updateInProgress = false;
-				// this.#scrollContainer.removeChild(this.#waitingProgressElement);
+				this.#scrollContainer.removeChild(this.#waitingProgressElement);
 				this.#removeParagraphs(this.#incrementSize, true);
 			}
 		} else {
@@ -83,12 +83,13 @@ class Scroll extends HTMLElement {
 			if (nst < halfView) {
 				this.#updateInProgress = true;
 				this.#scrollContainer.prepend(this.#waitingProgressElement);
+				this.#scrollContainer.scrollTop = 0;
 				this.#firstParId -= this.#incrementSize;
 				const ps = await loadParagraphs(this.#firstParId, this.#incrementSize);
 
 				await this.#appendParagraphs(ps, true);
 				this.#updateInProgress = false;
-				// this.#scrollContainer.removeChild(this.#waitingProgressElement);
+				this.#scrollContainer.removeChild(this.#waitingProgressElement);
 				this.#removeParagraphs(this.#incrementSize, false);
 			}
 		}
