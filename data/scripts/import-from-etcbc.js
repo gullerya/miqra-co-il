@@ -4,6 +4,13 @@ import stream from 'node:stream';
 import util from 'node:util';
 
 const BASE_ETCBC_URL = 'https://github.com/ETCBC/bhsa/raw/refs/heads/master/source';
+const files = [
+	'bhsa.mql.bz2',
+	'ketivqere.txt',
+	'lexicon_arc.txt',
+	'lexicon_hbo.txt',
+	'paragraphs.txt.bz2'
+];
 const args = util.parseArgs({
 	options: {
 		version: {
@@ -18,16 +25,17 @@ const args = util.parseArgs({
 const folderUrl = `${BASE_ETCBC_URL}/${args.values.version}`;
 
 //	prepare tmp folder
-await fs.rm('./data/tmp', { recursive: true, force: true });
-await fs.mkdir('./data/tmp', { recursive: true });
+const folderTmp = './data/tmp'
+await fs.rm(folderTmp, { recursive: true, force: true });
+await fs.mkdir(folderTmp, { recursive: true });
 
 //	download and write to tmp
-const ws = createWriteStream('./data/tmp/bhsa.mql.bz2', { flush: true });
-const response = await fetch(folderUrl + '/' + 'bhsa.mql.bz2');
+for (const file of files) {
+	const ws = createWriteStream(`${folderTmp}/${file}`, { flush: true });
+	const response = await fetch(`${folderUrl}/${file}`);
+	stream.Readable
+		.fromWeb(response.body)
+		.pipe(ws, { end: true });
+}
 
-console.log(folderUrl + '/' + 'bhsa.mql.bz2');
-console.log(response.status);
-
-stream.Readable
-	.fromWeb(response.body)
-	.pipe(ws, { end: true });
+//	extract archives
