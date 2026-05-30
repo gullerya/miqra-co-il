@@ -11,4 +11,4 @@ Additional text analysis, pre/post-processing, preparation and maintenance are d
 
 ## Font
 
-For the presentation of the Hebrew text SBL font was used, taken from [this location](https://www.sbl-site.org/educational/biblicalfonts.aspx).
+For the presentation of the Hebrew text SBL font is used, taken from [this location](https://www.sbl-site.org/educational/biblicalfonts.aspx).
